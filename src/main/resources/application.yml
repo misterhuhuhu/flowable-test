@@ -1,0 +1,16 @@
+spring:
+  liquibase:
+    enabled: false
+  datasource:
+    url: jdbc:mysql://${JDBC_URL:192.168.4.53}:${JDBC_PORT:3306}/${INSTANCE_NAME:flowable}?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${JDBC_USERNAME:root}
+    password: ${JDBC_PASSWORD:Bd./2020}
+
+flowable:
+  #关闭定时任务JOB
+  async-executor-activate: false
+  #  将databaseSchemaUpdate设置为true。当Flowable发现库与数据库表结构不一致时，会自动将数据库表结构升级至新版本。
+  database-schema-update: true
+  dmn:
+    deploy-resources: false

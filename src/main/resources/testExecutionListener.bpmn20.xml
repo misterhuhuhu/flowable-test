@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:flowable="http://flowable.org/bpmn"
+             typeLanguage="http://www.w3.org/2001/XMLSchema"
+             expressionLanguage="http://www.w3.org/1999/XPath"
+             targetNamespace="http://www.flowable.org/processdef">
+  <process id="testExecutionListener" name="test ExecutionListener" isExecutable="true">
+    
+    <startEvent id="startEvent1" flowable:formFieldValidation="true"/>
+    
+    <userTask id="sid-1E510142-F16D-4F23-BD7F-55ED6E3A9227" name="发起" flowable:assignee="jack" flowable:formFieldValidation="true">
+      <extensionElements>
+        <modeler:initiator-can-complete xmlns:modeler="http://flowable.org/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="sid-D0A510A4-9714-4623-A304-EAB918788324" sourceRef="startEvent1"
+                  targetRef="sid-1E510142-F16D-4F23-BD7F-55ED6E3A9227"/>
+    <endEvent id="sid-1E81241C-E3D9-4F8A-83B5-3AC6E6E61A5C">
+      <extensionElements>
+        <flowable:executionListener event="end" class="com.example.test.flowabletest.Listener.ExecutionListenerDemo"/>
+      </extensionElements>
+    </endEvent>
+    <sequenceFlow id="sid-0BFACC02-3BCA-44AF-9B93-AE5A4CBF5518" sourceRef="sid-1E510142-F16D-4F23-BD7F-55ED6E3A9227"
+                  targetRef="sid-1E81241C-E3D9-4F8A-83B5-3AC6E6E61A5C"/>
+  </process>
+</definitions>
